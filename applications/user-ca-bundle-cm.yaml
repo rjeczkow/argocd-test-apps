@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+    name: user-ca-bundle-cm
+    namespace: openshift-gitops
+spec:
+    source:
+        repoURL: https://github.com/rjeczkow/argocd-test-apps
+        path: user-ca-bundle-cm
+        targetRevision: HEAD
+    destination:
+        server: https://kubernetes.default.svc
+        namespace: openshift-config
+    project: default
+    syncPolicy:
+        automated: {}
